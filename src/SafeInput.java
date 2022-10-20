@@ -6,9 +6,9 @@ public class SafeInput
      *  Return a user supplied int within the specified range
      * @param pipe the scanner instance to use for the console input
      * @param prompt A string that tell the user what to input
-     * @param low the Lower for bound for the range of vaild values
-     * @param high the Upper for bound for the range of vaild values
-     * @return return a interger within range
+     * @param low the Lower for bound for the range of valid values
+     * @param high the Upper for bound for the range of valid values
+     * @return return an integer within range
      */
     public static int getRangedInt(Scanner pipe, String prompt, int low, int high)
     {
@@ -31,10 +31,10 @@ public class SafeInput
                     System.out.println("\nYou said your ret val is " + retVal + "But that is out of the range["+ low + " " + high + "]");
                 }
             }
-            else  // dont have an int
+            else  // don't have an int
             {
                 trash = pipe.nextLine();
-                System.out.println("Yo u must enter an integer not " + trash);
+                System.out.println("You must enter an integer not " + trash);
             }
             return retVal;
         }while (!done);
@@ -44,23 +44,23 @@ public class SafeInput
      *
      *
      * @param pipe
-     * @param promt
+     * @param prompt
      * @return
      */
-    public static int getInt(Scanner pipe, String promt)
+    public static int getInt(Scanner pipe, String prompt)
     {
         int retVal = 0;
         String trash = "";
         boolean done = false;
         do{
             // favorite number 1-10
-            System.out.println(promt +": ");
+            System.out.println(prompt +": ");
             if(pipe.hasNextInt())
             {
                 retVal = pipe.nextInt();
                 pipe.nextLine(); // clear the nextline from the buffer
                 done = true;
-            }else // dont have an int
+            }else // don't have an int
             {
                 trash=pipe.nextLine();
                 System.out.println("you must enter  an integer not "+trash);
@@ -128,7 +128,7 @@ public class SafeInput
                     System.out.println("\nYou said your ret val is " + retVal + "But that is out of the range["+ low + " " + high + "]");
                 }
             }
-            else  // dont have an double
+            else  // don't have an double
             {
                 trash = pipe.nextLine();
                 System.out.println("Yo u must enter an Double not " + trash);
@@ -144,7 +144,7 @@ public class SafeInput
      * @param prompt string prompt to tell the user what to input
      * @return a non zero length string
      */
-    public static String getnonZeroLengthString(Scanner pipe,String prompt)
+    public static String getNonZeroLengthString(Scanner pipe,String prompt)
     {
         String retVal = "";
         String trash = "";
@@ -157,7 +157,7 @@ public class SafeInput
             if(retVal.length() != 0)
             {
                 done = true;
-            }else // dont have a 0 length String
+            }else // don't have a 0 length String
             {
                 System.out.println("you must enter at least 1 charactor.");
             }
@@ -192,4 +192,32 @@ public class SafeInput
         }while(!done);
         return retVal;
     }
-}
+    public static boolean getYNConfirm(Scanner pipe, String prompt)
+    {
+        boolean retVal = false;
+        boolean done = false;
+        String inputYN = "";
+
+        do{
+            // favorite number 1-10
+            System.out.println(prompt +"[Y/N]: ");
+            inputYN = pipe.nextLine();
+
+            if(inputYN.equalsIgnoreCase("Y"))
+            {
+                done = true;
+                retVal = true;
+            }
+            else if(inputYN.equalsIgnoreCase("N")) {
+                done = true;
+                retVal = false;
+            }
+            else // you have a zero length string
+            {
+                System.out.println("You must enter a Y or N");
+            }
+        }while(!done);
+        return retVal;
+
+
+    }}
